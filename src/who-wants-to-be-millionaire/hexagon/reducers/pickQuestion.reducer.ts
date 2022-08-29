@@ -5,6 +5,6 @@ export const pickQuestionReducer = (
   state: { question: Question | null } = { question: null },
   action: AnyAction
 ) => {
-  if (action.type === "PICK_QUESTION") return action.payload;
+  if (action.type === "PICKED_QUESTION") return action.payload;
   return state;
 };

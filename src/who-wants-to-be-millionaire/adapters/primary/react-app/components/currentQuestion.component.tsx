@@ -2,7 +2,7 @@ import { QuestionTitle } from "./questionTitle.component";
 import { PossibleAnswers } from "./possibleAnswers.component";
 import { QuestionNumber } from "./questionNumber.component";
 import { useEffect } from "react";
-import { pickQuestion } from "../../../../hexagon/use-cases/pickQuestion";
+import { pickQuestion } from "../../../../hexagon/use-cases/question-picker/pickQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../../store/reduxStore";
 import { AppState } from "../../../../store/appState";
