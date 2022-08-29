@@ -1,15 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import {App} from "./App";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { App } from "./App";
+import { initReduxStore } from "./who-wants-to-be-millionaire/store/reduxStore";
+import { Provider } from "react-redux";
+import { InMemoryQuestionGateway } from "./who-wants-to-be-millionaire/adapters/secondary/gateways/inMemoryQuestionGateway";
+import { HttpQuestionGateway } from "./who-wants-to-be-millionaire/adapters/secondary/gateways/httpQuestionGateway";
+
+let questionGateway;
+
+if (process.env.REACT_APP_INMEMORY === "true") {
+  questionGateway = new InMemoryQuestionGateway();
+  questionGateway.nextQuestion = {
+    id: "123abc",
+    title: "Quel est le meilleur framework Web ?",
+    possibleAnswers: {
+      A: "Angular",
+      B: "React",
+      C: "Vue",
+      D: "Svelte",
+    },
+  };
+} else questionGateway = new HttpQuestionGateway();
+
+const store = initReduxStore({ questionGateway });
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
