@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import { CurrentQuestion } from "./who-wants-to-be-millionaire/currentQuestion.component";
-import { Pyramid } from "./who-wants-to-be-millionaire/pyramid.component";
-import { Jokers } from "./who-wants-to-be-millionaire/jokers.component";
+import { CurrentQuestion } from "./who-wants-to-be-millionaire/adapters/primary/react-app/components/currentQuestion.component";
+import { Pyramid } from "./who-wants-to-be-millionaire/adapters/primary/react-app/components/pyramid.component";
+import { Jokers } from "./who-wants-to-be-millionaire/adapters/primary/react-app/components/jokers.component";
 
 export function App() {
   return (

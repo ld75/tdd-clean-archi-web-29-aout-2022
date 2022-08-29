@@ -8,12 +8,18 @@ import {
 } from "@reduxjs/toolkit";
 import { AppState } from "./appState";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+import { pickQuestionReducer as pickQuestion } from "../hexagon/reducers/pickQuestion.reducer";
+import { QuestionGateway } from "../hexagon/gateways/questionGateway";
 
-interface Dependencies {}
+export interface Dependencies {
+  questionGateway: QuestionGateway;
+}
 
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
   return configureStore({
-    reducer: {},
+    reducer: {
+      pickQuestion,
+    },
     devTools: true,
     middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<AppState>) =>
       getDefaultMiddleware({
