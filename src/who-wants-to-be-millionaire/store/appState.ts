@@ -8,4 +8,7 @@ export interface AppState {
     givenAnswerId: string | null;
     rightAnswerId: string | null;
   };
+  pyramid: {
+    step: number;
+  };
 }

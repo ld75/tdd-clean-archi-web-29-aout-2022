@@ -37,16 +37,18 @@ describe("Pick the next question", () => {
   });
 
   it("should pick one random question from the questions pool", async () => {
-    questionGateway.nextQuestion = {
-      id: "123abc",
-      title: "Que signifie l'acronyme TDD ?",
-      possibleAnswers: {
-        A: "Test-Driven Development",
-        B: "Test-Dodo Development",
-        C: "Thunk-Driven Development",
-        D: "Test-Driven Design",
+    questionGateway.nextQuestions = [
+      {
+        id: "123abc",
+        title: "Que signifie l'acronyme TDD ?",
+        possibleAnswers: {
+          A: "Test-Driven Development",
+          B: "Test-Dodo Development",
+          C: "Thunk-Driven Development",
+          D: "Test-Driven Design",
+        },
       },
-    };
+    ];
     await store.dispatch(pickQuestion());
     expect(store.getState()).toEqual({
       ...initialState,

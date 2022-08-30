@@ -1,4 +1,5 @@
 import { AppThunk, Dependencies } from "../../../store/reduxStore";
+import { pickQuestion } from "../question-picker/pickQuestion";
 
 export const validateAnswer =
   (answerId: string): AppThunk<Promise<void>> =>
@@ -15,4 +16,5 @@ export const validateAnswer =
         rightAnswerId,
       },
     });
+    await dispatch(pickQuestion());
   };

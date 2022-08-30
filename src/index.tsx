@@ -13,7 +13,7 @@ let questionGateway: QuestionGateway;
 
 if (process.env.REACT_APP_INMEMORY === "true") {
   questionGateway = new InMemoryQuestionGateway();
-  (questionGateway as InMemoryQuestionGateway).nextQuestion = {
+  (questionGateway as InMemoryQuestionGateway).nextQuestions = {
     id: "123abc",
     title: "Quel est le meilleur framework Web ?",
     possibleAnswers: {

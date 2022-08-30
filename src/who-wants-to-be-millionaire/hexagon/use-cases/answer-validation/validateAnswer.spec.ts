@@ -17,12 +17,22 @@ describe("Answer validation", () => {
       D: "Test-Driven Design",
     },
   };
+  const question2 = {
+    id: "456def",
+    title: "Que signifie l'acronyme DDD ?",
+    possibleAnswers: {
+      A: "Dest-Driven Development",
+      B: "Dest-Dodo Development",
+      C: "Dhunk-Driven Development",
+      D: "Domain-Driven Design",
+    },
+  };
 
   beforeEach(() => {
     questionGateway = new InMemoryQuestionGateway();
     store = initReduxStore({ questionGateway });
     initialState = store.getState();
-    questionGateway.nextQuestion = question;
+    questionGateway.nextQuestions = [question, question2];
     store.dispatch({
       type: "PICKED_QUESTION",
       payload: {
@@ -40,6 +50,23 @@ describe("Answer validation", () => {
       ...initialState,
       pickQuestion: {
         question,
+      },
+      validateAnswer: {
+        givenAnswerId: "B",
+        rightAnswerId: "A",
+      },
+    });
+  });
+
+  it("should pick the next question after a good answer and some amount of time", async () => {
+    questionGateway.answerValidation = {
+      rightAnswerId: "A",
+    };
+    await store.dispatch(validateAnswer("A"));
+    expect(store.getState()).toEqual<AppState>({
+      ...initialState,
+      pickQuestion: {
+        question: question2,
       },
       validateAnswer: {
         givenAnswerId: "B",

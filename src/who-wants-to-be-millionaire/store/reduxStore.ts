@@ -11,6 +11,7 @@ import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMid
 import { pickQuestionReducer as pickQuestion } from "../hexagon/reducers/pickQuestion.reducer";
 import { QuestionGateway } from "../hexagon/gateways/questionGateway";
 import { validateAnswerReducer as validateAnswer } from "../hexagon/reducers/validateAnswer.reducer";
+import { pyramidReducer as pyramid } from "../hexagon/reducers/pyramid.reducer";
 
 export interface Dependencies {
   questionGateway: QuestionGateway;
@@ -21,6 +22,7 @@ export const initReduxStore = (dependencies: Partial<Dependencies>) => {
     reducer: {
       pickQuestion,
       validateAnswer,
+      pyramid,
     },
     devTools: true,
     middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<AppState>) =>
