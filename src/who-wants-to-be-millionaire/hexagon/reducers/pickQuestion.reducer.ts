@@ -1,5 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { Question } from "../../../question";
+import { Question } from "../models/question";
 
 export const pickQuestionReducer = (
   state: { question: Question | null } = { question: null },

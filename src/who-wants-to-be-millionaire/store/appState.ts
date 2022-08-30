@@ -1,4 +1,4 @@
-import { Question } from "../../question";
+import { Question } from "../hexagon/models/question";
 
 export interface AppState {
   pickQuestion: {

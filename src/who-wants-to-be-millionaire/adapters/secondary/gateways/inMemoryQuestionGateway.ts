@@ -1,12 +1,11 @@
 import { QuestionGateway } from "../../../hexagon/gateways/questionGateway";
-import { Question } from "../../../../question";
+import { Question } from "../../../hexagon/models/question";
 
 export class InMemoryQuestionGateway implements QuestionGateway {
   private _nextQuestion: Question | null = null;
   private _answerValidation: {
-    givenAnswerId: string | null;
     rightAnswerId: string | null;
-  } = { givenAnswerId: null, rightAnswerId: null };
+  } = { rightAnswerId: null };
 
   async pickQuestion(): Promise<Question> {
     return this._nextQuestion as any;
@@ -19,7 +18,7 @@ export class InMemoryQuestionGateway implements QuestionGateway {
     if (questionId !== this._nextQuestion?.id)
       throw new Error("Not the right question passed");
     return {
-      givenAnswerId: this._answerValidation.givenAnswerId!,
+      givenAnswerId: answerId,
       rightAnswerId: this._answerValidation.rightAnswerId!,
     };
   }
@@ -28,10 +27,7 @@ export class InMemoryQuestionGateway implements QuestionGateway {
     this._nextQuestion = value;
   }
 
-  set answerValidation(value: {
-    givenAnswerId: string | null;
-    rightAnswerId: string | null;
-  }) {
+  set answerValidation(value: { rightAnswerId: string | null }) {
     this._answerValidation = value;
   }
 }

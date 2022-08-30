@@ -1,5 +1,5 @@
 import { QuestionGateway } from "../../../hexagon/gateways/questionGateway";
-import { Question } from "../../../../question";
+import { Question } from "../../../hexagon/models/question";
 
 export class HttpQuestionGateway implements QuestionGateway {
   async pickQuestion(): Promise<Question> {

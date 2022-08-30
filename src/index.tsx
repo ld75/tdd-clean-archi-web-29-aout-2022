@@ -23,6 +23,9 @@ if (process.env.REACT_APP_INMEMORY === "true") {
       D: "Svelte",
     },
   };
+  (questionGateway as InMemoryQuestionGateway).answerValidation = {
+    rightAnswerId: "B",
+  };
 } else questionGateway = new HttpQuestionGateway();
 
 const store = initReduxStore({ questionGateway });

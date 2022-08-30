@@ -1,4 +1,4 @@
-import { Question } from "../../../question";
+import { Question } from "../models/question";
 
 export interface QuestionGateway {
   pickQuestion(): Promise<Question>;
