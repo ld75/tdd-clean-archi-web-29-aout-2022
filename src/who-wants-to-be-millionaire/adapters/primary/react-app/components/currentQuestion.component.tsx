@@ -5,13 +5,11 @@ import { useEffect } from "react";
 import { pickQuestion } from "../../../../hexagon/use-cases/question-picker/pickQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../../../store/reduxStore";
-import { AppState } from "../../../../store/appState";
+import { getCurrentQuestionVM } from "../view-models-generator/currentQuestionViewModel.selector";
 
 export const CurrentQuestion = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const question = useSelector(
-    (state: AppState) => state.pickQuestion.question
-  );
+  const question = useSelector(getCurrentQuestionVM);
 
   useEffect(() => {
     dispatch(pickQuestion());
