@@ -9,7 +9,9 @@ export class InMemoryQuestionGateway implements QuestionGateway {
   private currentQuestionNumber: number = 0;
 
   async pickQuestion(): Promise<Question> {
-    return this._nextQuestions[this.currentQuestionNumber++];
+    const question = this._nextQuestions[this.currentQuestionNumber++];
+    this.currentQuestionNumber++;
+    return question;
   }
 
   async validateAnswer(

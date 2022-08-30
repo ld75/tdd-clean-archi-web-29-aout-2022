@@ -13,16 +13,18 @@ let questionGateway: QuestionGateway;
 
 if (process.env.REACT_APP_INMEMORY === "true") {
   questionGateway = new InMemoryQuestionGateway();
-  (questionGateway as InMemoryQuestionGateway).nextQuestions = {
-    id: "123abc",
-    title: "Quel est le meilleur framework Web ?",
-    possibleAnswers: {
-      A: "Angular",
-      B: "React",
-      C: "Vue",
-      D: "Svelte",
+  (questionGateway as InMemoryQuestionGateway).nextQuestions = [
+    {
+      id: "123abc",
+      title: "Quel est le meilleur framework Web ?",
+      possibleAnswers: {
+        A: "Angular",
+        B: "React",
+        C: "Vue",
+        D: "Svelte",
+      },
     },
-  };
+  ];
   (questionGateway as InMemoryQuestionGateway).answerValidation = {
     rightAnswerId: "B",
   };

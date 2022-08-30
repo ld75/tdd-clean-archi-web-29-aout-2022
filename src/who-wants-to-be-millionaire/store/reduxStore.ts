@@ -12,9 +12,11 @@ import { pickQuestionReducer as pickQuestion } from "../hexagon/reducers/pickQue
 import { QuestionGateway } from "../hexagon/gateways/questionGateway";
 import { validateAnswerReducer as validateAnswer } from "../hexagon/reducers/validateAnswer.reducer";
 import { pyramidReducer as pyramid } from "../hexagon/reducers/pyramid.reducer";
+import { TaskWaiter } from "../hexagon/gateways/taskWaiter";
 
 export interface Dependencies {
   questionGateway: QuestionGateway;
+  taskWaiter: TaskWaiter;
 }
 
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
