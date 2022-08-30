@@ -14,4 +14,11 @@ export class HttpQuestionGateway implements QuestionGateway {
       },
     };
   }
+
+  validateAnswer(
+    questionId: string,
+    answerId: string
+  ): Promise<{ givenAnswerId: string; rightAnswerId: string }> {
+    return Promise.resolve({ givenAnswerId: "", rightAnswerId: "" });
+  }
 }

@@ -8,6 +8,8 @@ export const validateAnswerReducer = (
   },
   action: AnyAction
 ) => {
-  if (action.type === "VALIDATED_ANSWER") return action.payload;
+  if (action.type === "VALIDATED_ANSWER") {
+    return action.payload;
+  }
   return state;
 };
