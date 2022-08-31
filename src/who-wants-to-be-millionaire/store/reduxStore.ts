@@ -7,13 +7,16 @@ import {
     ThunkDispatch,
 } from "@reduxjs/toolkit";
 import { AppState } from "./appState";
+import {pickQuestionReducer as pickQuestionState} from "./reducers/PickQuestionReducer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 interface Dependencies {}
 
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
     return configureStore({
-        reducer: {},
+        reducer: {
+            pickQuestionState
+        },
         devTools: true,
         middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<AppState>) =>
             getDefaultMiddleware({
