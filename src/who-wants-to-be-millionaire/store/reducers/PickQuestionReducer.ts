@@ -1,9 +1,9 @@
 import {Action} from "@reduxjs/toolkit";
-import {pickQuestionUsecase} from "../../hexagon/use-cases/pickQuestionUsecase"
-export const pickQuestionReducer=(state:{question:{id:null}}={question:{id:null}},action:Action)=>
+import {Question} from "../../hexagon/entities/question";
+export const pickQuestionReducer=(state:{question:Question|null}={question:null},action:AnyAction)=>
 {
-    action.payload
-    if(action.type==="PICK_RETURNED_QUESTION") return pickQuestionUsecase();//{question:{id:"hello"}}
+//    if(action.type==="PICK_RETURNED_QUESTION") return pickQuestionUsecase();//{question:{id:"hello"}}
+    if(action.type==="PICK_RETURNED_QUESTION") return action.payload
     return state
 }
 

@@ -1,8 +1,9 @@
+import {Question} from "../hexagon/entities/question";
 
 export interface AppState {
 
-    pickQuestion: {
-        question: null
+    pickQuestionState: {
+        question: Question|null
     }
 
 }
