@@ -6,7 +6,7 @@ export class InMemoryQuestionGateway implements QuestionGateway {
      async getFirstQuestion(): Promise<Question> {
         return this.question;
     }
-    set nextQuestion(question:Question){
-         this.question=question;
+    set nextQuestion(questionvalue:Question){
+         this.question=questionvalue;
     }
 }

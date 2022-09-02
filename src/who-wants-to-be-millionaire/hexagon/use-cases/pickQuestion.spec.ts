@@ -7,10 +7,10 @@ import {InMemoryQuestionGateway} from "./tests/inmemoryQuestionGateway"
 
 describe("Pick the next question", () => {
     let store: ReduxStore;
-    let inMemoryQuestionGateway:InMemoryQuestionGateway
+    let questionGatewayInstance:InMemoryQuestionGateway
     beforeEach(() => {
-        store = initReduxStore({})
-        inMemoryQuestionGateway = new InMemoryQuestionGateway()
+        questionGatewayInstance = new InMemoryQuestionGateway()
+        store = initReduxStore({questionGatewayInstance})
     });
 
     it("should not have picked any question initially", () => {
@@ -21,9 +21,9 @@ describe("Pick the next question", () => {
             },
         });
     });
-    it('should pick the from server returned question', async function () {
-        inMemoryQuestionGateway.nextQuestion={id:"hello"}
-        await pickQuestionUsecase(store.dispatch, inMemoryQuestionGateway);
+    it('should pick question the from server returned question', async function () {
+        questionGatewayInstance.nextQuestion={id:"hello"}
+        await store.dispatch(pickQuestionUsecase())
         expect(store.getState()).toEqual<AppState>({
             pickQuestionState: {
                 question: {

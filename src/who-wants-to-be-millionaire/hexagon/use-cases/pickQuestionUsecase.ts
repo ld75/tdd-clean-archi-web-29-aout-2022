@@ -2,10 +2,10 @@ import {ReduxStore} from "../../store/reduxStore";
 import {ThunkDispatch} from "@reduxjs/toolkit"
 import {QuestionGateway} from "../gateways/questionGateway"
 import {Question} from "../entities/question";
-export const pickQuestionUsecase= async (dispatch:ReduxStore["dispatch"],questionGateway:QuestionGateway)=>{
-     const question:Question = await questionGateway.getFirstQuestion()
-        dispatch({type:"PICK_RETURNED_QUESTION",payload:{question}})
+import {AppThunk} from "../../store/reduxStore";
 
-
-//return    {question:{id:"hello"}}
-}
+export const pickQuestionUsecase=
+    ():AppThunk<Promise<void>>=>async (dispatch,getState,dependencies)=>{
+    const question:Question = await dependencies.questionGatewayInstance.getFirstQuestion()
+    dispatch({type:"PICK_RETURNED_QUESTION",payload:{question}})
+    }

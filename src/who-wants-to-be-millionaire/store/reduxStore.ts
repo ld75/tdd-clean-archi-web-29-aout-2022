@@ -9,8 +9,11 @@ import {
 import { AppState } from "./appState";
 import {pickQuestionReducer as pickQuestionState} from "./reducers/PickQuestionReducer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+import {QuestionGateway} from "../hexagon/gateways/questionGateway";
 
-interface Dependencies {}
+export interface Dependencies {
+    questionGatewayInstance:QuestionGateway;
+}
 
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
     return configureStore({
