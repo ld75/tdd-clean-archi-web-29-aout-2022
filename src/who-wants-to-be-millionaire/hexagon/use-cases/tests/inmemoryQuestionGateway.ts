@@ -2,7 +2,7 @@ import {QuestionGateway} from "../../gateways/questionGateway";
 import {Question} from "../../entities/question";
 
 export class InMemoryQuestionGateway implements QuestionGateway {
-    public question:QUestion;
+    public question:Question;
      async getFirstQuestion(): Promise<Question> {
         return this.question;
     }
