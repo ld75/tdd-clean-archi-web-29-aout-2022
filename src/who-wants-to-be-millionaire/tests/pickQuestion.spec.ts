@@ -1,8 +1,8 @@
-import { AppState } from "../../store/appState";
-import {ReduxStore, AppThunk, initReduxStore} from "../../store/reduxStore";
-import {pickQuestionUsecase} from "./pickQuestionUsecase";
-import {QuestionGateway} from "../gateways/questionGateway";
-import {InMemoryQuestionGateway} from "./tests/inmemoryQuestionGateway"
+import { AppState } from "../store/appState";
+import {ReduxStore, AppThunk, initReduxStore} from "../store/reduxStore";
+import {pickQuestionUsecase} from "../hexagon/use-cases/pickQuestionUsecase";
+import {QuestionGateway} from "../hexagon/gateways/questionGateway";
+import {InMemoryQuestionGateway} from "../adapters/secondary/gateways/inmemoryQuestionGateway"
 
 
 describe("Pick the next question", () => {
@@ -22,12 +22,22 @@ describe("Pick the next question", () => {
         });
     });
     it('should pick question the from server returned question', async function () {
-        questionGatewayInstance.nextQuestion={id:"hello"}
+        questionGatewayInstance.nextQuestion={id:"5",demande:"de quelle couleur est le cheval blanc d'Henry IV ?",possibleAnswers:{
+                A:"bleu",
+                B:"vert",
+                C:"gris",
+                D:"blanc"}}
         await store.dispatch(pickQuestionUsecase())
         expect(store.getState()).toEqual<AppState>({
             pickQuestionState: {
                 question: {
-                    id: "hello"
+                    id: "5",
+                    demande:"de quelle couleur est le cheval blanc d'Henry IV ?",
+                    possibleAnswers:{
+                        A:"bleu",
+                        B:"vert",
+                        C:"gris",
+                        D:"blanc"}
                 },
             },
         })

@@ -1,5 +1,5 @@
-import {QuestionGateway} from "../../gateways/questionGateway";
-import {Question} from "../../entities/question";
+import {QuestionGateway} from "../../../hexagon/gateways/questionGateway";
+import {Question} from "../../../hexagon/entities/question";
 
 export class InMemoryQuestionGateway implements QuestionGateway {
     public question:Question;
