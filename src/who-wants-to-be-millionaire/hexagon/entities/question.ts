@@ -1,5 +1,5 @@
 export interface Question {
 id:String
 demande:String,
-possibleAnswers:Array
+possibleAnswers:Record<string,string>
 }
