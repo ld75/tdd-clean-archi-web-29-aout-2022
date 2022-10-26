@@ -1,4 +1,4 @@
-import {Action} from "@reduxjs/toolkit";
+import {Action, AnyAction} from "@reduxjs/toolkit";
 import {Question} from "../entities/question";
 export const pickQuestionReducer=(state:{question:Question|null}={question:null},action:AnyAction)=>
 {
