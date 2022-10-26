@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { App } from "./App";
+import {initReduxStore} from "./who-wants-to-be-millionaire/store/reduxStore";
+import {Provider} from "react-redux";
+import {
+    InMemoryQuestionGateway
+} from "./who-wants-to-be-millionaire/adapters/secondary/gateways/inmemoryQuestionGateway";
+import {Question} from "./who-wants-to-be-millionaire/hexagon/entities/question";
+import {QuestionGateway} from "./who-wants-to-be-millionaire/hexagon/gateways/questionGateway";
 
+let questionGatewayInstance:QuestionGateway = new InMemoryQuestionGateway();
+const store = initReduxStore({questionGatewayInstance});
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    </Provider>
   </React.StrictMode>
 );
 
