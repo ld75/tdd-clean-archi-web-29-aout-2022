@@ -10,11 +10,12 @@ import { AppState } from "./appState";
 import {pickQuestionReducer as pickQuestionState} from "../hexagon/reducers/pickQuestionReducer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import {QuestionGateway} from "../hexagon/gateways/questionGateway";
+import {Question} from "../hexagon/entities/question";
 
 export interface Dependencies {
     questionGatewayInstance:QuestionGateway;
 }
-
+//code fourni par redux:
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
     return configureStore({
         reducer: {

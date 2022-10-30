@@ -22,7 +22,7 @@ describe("Pick the next question", () => {
         });
     });
     it('should pick question the from server returned question', async function () {
-        questionGatewayInstance.nextQuestion={id:"5",demande:"de quelle couleur est le cheval blanc d'Henry IV ?",possibleAnswers:{
+        questionGatewayInstance.addNextQuestion={id:"5",demande:"de quelle couleur est le cheval blanc d'Henry IV ?",possibleAnswers:{
                 A:"bleu",
                 B:"vert",
                 C:"gris",

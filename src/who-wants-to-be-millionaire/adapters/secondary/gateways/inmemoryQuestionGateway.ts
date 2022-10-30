@@ -8,7 +8,7 @@ export class InMemoryQuestionGateway implements QuestionGateway {
         // @ts-ignore
         return this.question;
     }
-    set nextQuestion(questionvalue:Question){
+    set addNextQuestion(questionvalue:Question){
          this.question=questionvalue;
     }
 }
