@@ -11,4 +11,8 @@ export class InMemoryQuestionGateway implements QuestionGateway {
     set addNextQuestion(questionvalue:Question){
          this.question=questionvalue;
     }
+
+    getCorrectAnswer(questionid: string, givenAnswer: string): Promise<Record<string,string>> {
+        return Promise.resolve({});
+    }
 }

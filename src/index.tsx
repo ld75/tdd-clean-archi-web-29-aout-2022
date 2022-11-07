@@ -10,8 +10,10 @@ import {
 } from "./who-wants-to-be-millionaire/adapters/secondary/gateways/inmemoryQuestionGateway";
 import {Question} from "./who-wants-to-be-millionaire/hexagon/entities/question";
 import {QuestionGateway} from "./who-wants-to-be-millionaire/hexagon/gateways/questionGateway";
+import {HttpQuestionGateway} from "./who-wants-to-be-millionaire/adapters/secondary/gateways/httpQuestionGateway";
 
-let questionGatewayInstance:QuestionGateway = new InMemoryQuestionGateway();
+let questionGatewayInstance:QuestionGateway = new HttpQuestionGateway();
+
 const store = initReduxStore({questionGatewayInstance});
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

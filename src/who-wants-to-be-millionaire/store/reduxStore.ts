@@ -8,9 +8,12 @@ import {
 } from "@reduxjs/toolkit";
 import { AppState } from "./appState";
 import {pickQuestionReducer as pickQuestionState} from "../hexagon/reducers/pickQuestionReducer";
+import {validateAnswerReducer as validateAnswerState} from "../hexagon/reducers/validateAnswerReducer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import {QuestionGateway} from "../hexagon/gateways/questionGateway";
 import {Question} from "../hexagon/entities/question";
+
+
 
 export interface Dependencies {
     questionGatewayInstance:QuestionGateway;
@@ -19,12 +22,13 @@ export interface Dependencies {
 export const initReduxStore = (dependencies: Partial<Dependencies>) => {
     return configureStore({
         reducer: {
-            pickQuestionState
+            pickQuestionState,
+            validateAnswerState
         },
-        devTools: true,
+        devTools: true, // pour dire qu'on peut utiliser le plugin redux du devtool dans le browser
         middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<AppState>) =>
             getDefaultMiddleware({
-                thunk: {
+                thunk: { // un des plugin(=proxy) qui ici est thunk. On peut en ajouter d 'autres qui existent
                     extraArgument: dependencies,
                 },
             }),

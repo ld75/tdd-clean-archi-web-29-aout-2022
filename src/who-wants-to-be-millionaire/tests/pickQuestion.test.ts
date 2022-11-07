@@ -8,17 +8,20 @@ import {InMemoryQuestionGateway} from "../adapters/secondary/gateways/inmemoryQu
 describe("Pick the next question", () => {
     let store: ReduxStore;
     let questionGatewayInstance:InMemoryQuestionGateway
+    let initialstate:AppState
     beforeEach(() => {
         questionGatewayInstance = new InMemoryQuestionGateway()
         store = initReduxStore({questionGatewayInstance})
+        initialstate=store.getState();
     });
 
     it("should not have picked any question initially", () => {
         //store.dispatch(({state:{pickQuestion:{question:null}}={pickQuestion:{question:null}},action:AnyAction})=> state)
         expect(store.getState()).toEqual<AppState>({
+            ...initialstate,
             pickQuestionState: {
                 question: null,
-            },
+            }
         });
     });
     it('should pick question the from server returned question', async function () {
@@ -29,6 +32,7 @@ describe("Pick the next question", () => {
                 D:"blanc"}}
         await store.dispatch(pickQuestionUsecase())
         expect(store.getState()).toEqual<AppState>({
+            ...initialstate,
             pickQuestionState: {
                 question: {
                     id: "5",
@@ -39,8 +43,9 @@ describe("Pick the next question", () => {
                         C:"gris",
                         D:"blanc"}
                 },
-            },
+            }
         })
     });
+
 
 });
