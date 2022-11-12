@@ -6,6 +6,6 @@ import {AppThunk} from "../../store/reduxStore";
 
 export const pickQuestionUsecase=
     ():AppThunk<Promise<void>>=>async (dispatch,getState,{questionGatewayInstance}:Dependencies)=>{
-    const question:Question = await questionGatewayInstance.getFirstQuestion()
+    const question:Question = await questionGatewayInstance.getNextQuestion()
     dispatch({type:"PICK_RETURNED_QUESTION",payload:{question}})
     }

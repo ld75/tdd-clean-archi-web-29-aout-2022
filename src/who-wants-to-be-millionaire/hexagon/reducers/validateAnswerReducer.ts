@@ -11,5 +11,6 @@ export const validateAnswerReducer=(state:{answer:Answer}={answer:{givenAnswer:n
         const correctAnswer=Object.values(questionAnswer.answer)[0];
         return { answer:{givenAnswer:givenanswer,correctAnswer:correctAnswer}}
     }
+    if(action.type==="PICK_RETURNED_QUESTION") return { answer:{givenAnswer:null,correctAnswer:null}}
     return state;
 }

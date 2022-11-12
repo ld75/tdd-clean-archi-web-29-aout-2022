@@ -9,21 +9,25 @@ import {
 import { AppState } from "./appState";
 import {pickQuestionReducer as pickQuestionState} from "../hexagon/reducers/pickQuestionReducer";
 import {validateAnswerReducer as validateAnswerState} from "../hexagon/reducers/validateAnswerReducer";
+import {pyramidReducer as pyramidState} from "../hexagon/reducers/pyramidReducer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import {QuestionGateway} from "../hexagon/gateways/questionGateway";
 import {Question} from "../hexagon/entities/question";
+import {ITimer} from "../hexagon/gateways/iTimer";
 
 
 
 export interface Dependencies {
-    questionGatewayInstance:QuestionGateway;
+    questionGatewayInstance:QuestionGateway,
+    timer:ITimer
 }
 //code fourni par redux:
-export const initReduxStore = (dependencies: Partial<Dependencies>) => {
+export const initReduxStore = (dependencies: Partial<Dependencies>) => { //Partial pour dire que on est pas obligé d'avoir des dépendances: ce param peut etre vide
     return configureStore({
         reducer: {
             pickQuestionState,
-            validateAnswerState
+            validateAnswerState,
+            pyramidState
         },
         devTools: true, // pour dire qu'on peut utiliser le plugin redux du devtool dans le browser
         middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<AppState>) =>

@@ -4,7 +4,7 @@ import {Question} from "../../../hexagon/entities/question";
 export class InMemoryQuestionGateway implements QuestionGateway {
     public question: Question | undefined;
 
-    async getFirstQuestion(): Promise<Question> {
+    async getNextQuestion(): Promise<Question> {
         // @ts-ignore
         return this.question;
     }

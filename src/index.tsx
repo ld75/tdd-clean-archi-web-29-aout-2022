@@ -11,10 +11,12 @@ import {
 import {Question} from "./who-wants-to-be-millionaire/hexagon/entities/question";
 import {QuestionGateway} from "./who-wants-to-be-millionaire/hexagon/gateways/questionGateway";
 import {HttpQuestionGateway} from "./who-wants-to-be-millionaire/adapters/secondary/gateways/httpQuestionGateway";
+import {ITimer} from "./who-wants-to-be-millionaire/hexagon/gateways/iTimer";
+import {Timeout} from "./who-wants-to-be-millionaire/adapters/secondary/gateways/timeout";
 
 let questionGatewayInstance:QuestionGateway = new HttpQuestionGateway();
-
-const store = initReduxStore({questionGatewayInstance});
+let timer:ITimer = new Timeout();
+const store = initReduxStore({questionGatewayInstance,timer});
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

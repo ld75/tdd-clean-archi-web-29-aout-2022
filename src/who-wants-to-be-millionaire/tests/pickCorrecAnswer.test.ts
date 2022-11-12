@@ -1,14 +1,14 @@
 import { AppState } from "../store/appState";
 import {ReduxStore, AppThunk, initReduxStore} from "../store/reduxStore";
 import {validateAnswerUsecase} from "../hexagon/use-cases/validateAnswerUsecase";
-import {QuestionGateway} from "../hexagon/gateways/questionGateway";
-import {Question} from "../hexagon/entities/question";
 import {HttpQuestionGateway} from "../adapters/secondary/gateways/httpQuestionGateway";
-import {Answer} from "../hexagon/entities/answer";
+import {Question} from "../hexagon/entities/question";
+import {TimerMock} from "./mocks/timerMock";
 
 let initialstate:AppState;
 
 class InMemOryValidatorGateway extends HttpQuestionGateway{
+    nbrquestion:number=0;
     public correctAnswer!:string;
     async getCorrectAnswer(questionid:string,givenAnswer: string):  Promise<Record<string,string>> {
         let res:Record<string,string> = {};
@@ -18,13 +18,18 @@ class InMemOryValidatorGateway extends HttpQuestionGateway{
     set setCorrectAnswer(correctAnswser:string){
         this.correctAnswer=correctAnswser;
     }
+    getNextQuestion(): Promise<Question> {
+        this.nbrquestion++;
+        if (this.nbrquestion<1) return super.getNextQuestion();
+        else  return Promise.resolve({id:"2",demande:"deuxiemequestion",possibleAnswers:{"a":"toto","b":"titi"}});
+    }
 }
 
 describe("getCorrectAnswer", () => {
     let store: ReduxStore;
     let validatorGatewayMock:InMemOryValidatorGateway=new InMemOryValidatorGateway();
     beforeEach(() => {
-        store = initReduxStore({questionGatewayInstance:validatorGatewayMock})
+        store = initReduxStore({questionGatewayInstance:validatorGatewayMock,timer:new TimerMock()})
         initialstate=store.getState()
     });
     it('noAnswerchoosenYet_getCorrectAnswser_NothingHappens', function () {
@@ -61,6 +66,31 @@ describe("getCorrectAnswer", () => {
                     }
             }
             });
+    });
+    it("CorrectAnswerGiven_validateAnswer_pickNextQuestion", async () => {
+        let givenQuestion="1";
+        let givenAnswer="A";
+        let theCorrectAnswer="A";
+        console.log("putain1-0")
+        store.dispatch({type:'PICK_RETURNED_QUESTION',payload:{question:{id:givenQuestion}}})
+        validatorGatewayMock.setCorrectAnswer=theCorrectAnswer
+        await store.dispatch(validateAnswerUsecase(givenAnswer));
+        expect(store.getState()).toEqual<AppState>({
+            ...initialstate,
+            pickQuestionState: {
+                question: {
+                    id: "2",
+                    demande: "deuxiemequestion",
+                    possibleAnswers: {"a": "toto", "b": "titi"}
+                }
+            }
+            ,
+            pyramidState: {
+                pyramid: {
+                    valeur: 1
+                }
+            }
+        });
     });
 
 });
