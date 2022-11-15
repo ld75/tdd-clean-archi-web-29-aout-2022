@@ -10,7 +10,7 @@ export const validateAnswerUsecase=
     const questionAnsweredId:string=question.id
         const questionIdAndGoodAnswser:Record<string,string> = await questionGatewayInstance.getCorrectAnswer(questionAnsweredId,givenAnswer)
         if (questionIdAndGoodAnswser[questionAnsweredId]==null) throw Error();
-        dispatch({type:'VALIDATE_ANSWER',payload:{answer:questionIdAndGoodAnswser,givenanswser:givenAnswer}})
+        dispatch({type:'VALIDATE_ANSWER',payload:{questionIdCorrectAnswer:questionIdAndGoodAnswser,givenanswser:givenAnswer}})
         if (givenAnswer==questionIdAndGoodAnswser[questionAnsweredId]){
             dispatch({type:'INCREASE_PYRAMID',payload:{pyramid:{valeur:getState().pyramidState.pyramid.valeur+1}}})
             timer.setTimeout(()=>{
