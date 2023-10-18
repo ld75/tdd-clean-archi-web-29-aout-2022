@@ -9,7 +9,7 @@ export function App() {
     <div className="App">
       <div className="flex justify-between mx-3">
         <div className="flex flex-col w-6/12">
-          <CurrentQuestion />
+        <CurrentQuestion />
         </div>
         <div className="flex flex-col w-3/12">
           <Jokers />

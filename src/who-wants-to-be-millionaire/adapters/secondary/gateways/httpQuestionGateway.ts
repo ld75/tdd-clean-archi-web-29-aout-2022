@@ -6,8 +6,8 @@ export class HttpQuestionGateway implements QuestionGateway {
     getNextQuestion(): Promise<Question> {
         const valeur:string=process.env.REACT_APP_UNTRUC+""
         this.nbrquestion++;
-        if (this.nbrquestion<3)return Promise.resolve({id:"question",demande:"demande",possibleAnswers:{"a":valeur,"b":"moncul","c":"tata"}});
-        else  return Promise.resolve({id:"2",demande:"deuxiemequestion",possibleAnswers:{"a":"toto","b":"titi"}});
+        if (this.nbrquestion<3)return Promise.resolve({id:"question",demande:"demande",possibleAnswers:{"a":"sans doutes","b":"pas sur","c":"peut etre"}});
+        else  return Promise.resolve({id:"2",demande:"deuxiemequestion",possibleAnswers:{"a":"chais pas","b":"probablement"}});
 
     }
 
